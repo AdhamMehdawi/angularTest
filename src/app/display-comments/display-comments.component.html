@@ -1,0 +1,19 @@
+<h1>
+  Hi comments
+  <small>
+    <button (click)="onClose()">Close</button>
+  </small>
+</h1>
+
+<div class="card-container" *ngFor="let c of tempComments">
+  <div>
+    <div class="card">
+      {{ c.name }}
+      <hr />
+      <br />
+      <p>
+        {{ c.body }}
+      </p>
+    </div>
+  </div>
+</div>

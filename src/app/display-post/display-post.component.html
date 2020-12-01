@@ -1,0 +1,63 @@
+<div id="displayPost" *ngIf="!displaycomments">
+
+    <button class="btn "  [ngClass]="dateFormat == 'shortDate' ? 'btn-info' : 'btn-secondary' "  
+    (click)="format('shortDate')">ShortDate</button>
+    <button class="btn "  [ngClass]="dateFormat == 'fullDate' ? 'btn-info' : 'btn-secondary' "  
+    (click)="format('fullDate')">FullDate</button>
+
+
+    <h1> From root component : {{tableTile}} 
+
+        - {{dayDate | date:dateFormat  | uppercase }}
+    </h1>
+    <table class="table table-striped">
+        <thead>
+            <tr *ngFor="let col of cols">
+                <th >{{col.display}}</th>
+                <th>User Id </th>
+                <th>Title </th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let post of posts">
+                <td>{{
+                    post.id  | expoNumber: 10
+                }}
+                </td>
+                <td>
+                    {{
+                        post.userId
+                    }}
+                </td>
+                <td>
+                    {{
+                        post.title  | uppercase
+                    }}
+                    
+                </td>
+                <td>
+                    {{
+                        post.body
+                    }}
+                </td>
+                <td>
+                    <button (click)="onDelete($event, post)"  >   Delete </button>
+                    <button (click)="display(post)" > Comments  </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <p>
+    {{
+        posts | json
+    }}
+</p> -->
+
+<div id="displayComments" *ngIf="displaycomments">
+<app-display-comments (closeEvent)="close($event)" [post]="selectedPost"></app-display-comments>
+</div>
+
+
