@@ -6,19 +6,27 @@ import { AppComponent } from './app.component';
 import { DisplayPostComponent } from './display-post/display-post.component';
 import { DisplayCommentsComponent } from './display-comments/display-comments.component';
 import { ExpoNumberPipe } from './Shared/Pipe/MathExpoNumberPipe';
+import { PostsComponent } from './posts/posts.component';
+import { MenueComponent } from './menue/menue.component';
+import { PostService } from './posts/post.service';
+// import { Routes, RouterModule } from '@angular/router';
 
+// const routes: Routes = [{ path: 'post', component: DisplayPostComponent }];
 @NgModule({
   declarations: [
     AppComponent,
     DisplayPostComponent,
     DisplayCommentsComponent,
-    ExpoNumberPipe
+    ExpoNumberPipe,
+    PostsComponent,
+    MenueComponent,
   ],
   imports: [
-  BrowserModule,
-    AppRoutingModule
+    BrowserModule,
+    AppRoutingModule,
+    // RouterModule.forRoot(routes),
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [PostService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

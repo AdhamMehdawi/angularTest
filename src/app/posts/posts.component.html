@@ -1,0 +1,43 @@
+<h1>
+    {{
+        id
+    }}
+</h1>
+<table class="table table-striped">
+    <thead>
+        <tr >
+            <th >Id</th>
+            <th>User Id </th>
+            <th>Title </th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let post of posts">
+            <td>{{
+                post.id   
+            }}
+            </td>
+            <td>
+                {{
+                    post.userId
+                }}
+            </td>
+            <td>
+                {{
+                    post.title  | uppercase
+                }}
+                
+            </td>
+            <td>
+                {{
+                    post.body
+                }}
+            </td>
+             <td>
+                <!-- <button (click)="onDelete($event, post)"  >   Delete </button>
+                <button (click)="display(post)" > Comments  </button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>

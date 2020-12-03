@@ -6,6 +6,8 @@ import {
   OnInit,
 } from '@angular/core';
 import postsData from '../../src/assets/posts.json';
+import appSetting from '../../src/assets/appSettings.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +24,13 @@ export class AppComponent
   testType: Student;
   isLogin = true;
   posts = postsData;
-   input = {
-     titile: this.title,
-     postsData: this.posts
-   };
-  constructor() {
+  input = {
+    titile: this.title,
+    postsData: this.posts,
+  };
+  testVar = appSetting;
+
+  constructor(private router: Router) {
     // this.testType = new Student();
     console.log(this.sum());
   }
@@ -51,10 +55,13 @@ export class AppComponent
     if (index !== -1) {
       this.posts.splice(index, 1);
     }
- 
   }
 
   // tslint:disable-next-line:align
+
+  nav() {
+    this.router.navigate(['/posts', 1]);
+  }
 }
 
 interface Student {
