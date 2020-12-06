@@ -18,7 +18,7 @@ export class PostService {
   getPost(): Observable<PostModel[]> {
     return this.http.get<PostModel[]>(this.serverUrl + 'posts').pipe(
       //retry(2),debounceTime(2),debounce(c=>{})
-      catchError(this.handleError)
+     catchError(this.handleError)
     );
   }
 
