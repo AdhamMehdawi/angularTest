@@ -1,0 +1,13 @@
+<div class="card-container" *ngFor="let c of (commentsList$ | async)">
+    <div>
+      <div class="card">
+        {{ c.name }}
+        <hr />
+        <br />
+        <p>
+          {{ c.body }}
+        </p>
+      </div>
+    </div>
+  </div>
+  
