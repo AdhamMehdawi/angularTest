@@ -12,9 +12,10 @@ import { PostModel } from './postmodel';
 })
 export class PostsComponent implements OnInit {
   posts: PostModel[];
+  tempPosts: PostModel[];
   //posts: any[] = postsData;
   id: number;
-
+  searchValue: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -31,13 +32,32 @@ export class PostsComponent implements OnInit {
     this.route.queryParamMap.subscribe((params) => {
       console.log(params);
     });
-    var restult2 = this.postService.getPost().subscribe((arg) => {
-      this.posts = arg;
-    }, error=> {} );
+    var restult2 = this.postService.getPost().subscribe(
+      (arg) => {
+        this.posts = arg;
+        this.tempPosts = this.posts;
+      },
+      (error) => {}
+    );
   }
 
   display(post: PostModel) {
     this.router.navigate(['/posts/comments', post.id]);
+  }
+
+  search() {
+    
+    // this.postService.searchPosts(this.searchValue).subscribe((res) => {
+    //   this.tempPosts = res;
+    // });
+
+    this.tempPosts = this.posts.filter(
+      (c) =>
+        c.body.includes(this.searchValue) ||
+        c.title.includes(this.searchValue) ||
+        c.id == +this.searchValue ||
+        c.userId == +this.searchValue
+    );
   }
 }
 

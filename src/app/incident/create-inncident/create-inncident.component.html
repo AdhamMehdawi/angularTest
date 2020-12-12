@@ -1,0 +1,81 @@
+<div class="container" *ngIf="incidentForm">
+  <form [formGroup]="incidentForm" (ngSubmit)="save()">
+    <div>
+      <label>Incident subject</label>
+      <input
+        type="text"
+        name="subject"
+        required="required"
+        formControlName="subject"
+        class="fonr-control"
+      />
+      <div class="error"   *ngIf=" 
+      subject.invalid &&
+      (subject.touched || subject.dirty)
+    "
+     style="color: red;">
+     <div
+     class="error"
+     *ngIf="
+       subject.errors.required
+     "
+   >
+     The subject feild is required
+   </div>
+   <div *ngIf="subject.errors.minlength">
+     the subject must be at least
+     {{ subject.errors.minlength.requiredLength }}
+     characters long
+   </div>
+   <div *ngIf="subject.errors.noTestallowed">
+     the subject must be any value not equal to test
+   </div>
+      </div>
+   
+      {{ subject.errors | json }}
+    </div>
+
+    <div>
+      <label>Description</label>
+      <input
+        type="text"
+        name="description"
+        formControlName="description"
+        class="fonr-control"
+      />
+    </div>
+
+    <div>
+      <label>SendTo</label>
+      <input
+        type="text"
+        name="sendTo"
+        formControlName="sendTo"
+        class="fonr-control"
+      />
+    </div>
+
+    <div formArrayName="address">
+      <label>Address</label>
+      <button (click)="addNewAddress()">Add</button>
+      <div *ngFor="let item of Address.controls; let i = index">
+        <div [formGroupName]="i">
+          <label>City</label>
+          <input type="text" formControlName="city" class="fonr-control" />
+          <br />
+          <label>Street</label>
+          <input type="text" formControlName="street" class="fonr-control" />
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="!incidentForm.valid">
+      Change subject Value
+    </button>
+  </form>
+  <!-- {{
+    incidentForm.value | json
+}}   -->
+
+  {{ incidentForm.status }}
+</div>

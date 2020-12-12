@@ -18,12 +18,21 @@ export class PostService {
   getPost(): Observable<PostModel[]> {
     return this.http.get<PostModel[]>(this.serverUrl + 'posts').pipe(
       //retry(2),debounceTime(2),debounce(c=>{})
-     catchError(this.handleError)
+      catchError(this.handleError)
     );
   }
 
   getCommnets(id: number): Observable<any[]> {
     return this.http.get<any[]>(this.serverUrl + 'posts/' + id + '/comments');
+  }
+
+  
+  checkEmail(email: string): Observable<boolean> {
+    return this.http.get<boolean>('http://localhost:61638/api/values/'+email);
+  }
+
+  searchPosts(key: string): Observable<PostModel[]> {
+    return this.http.post<PostModel[]>(this.serverUrl + 'posts', { key });
   }
 
   handleError(error) {
