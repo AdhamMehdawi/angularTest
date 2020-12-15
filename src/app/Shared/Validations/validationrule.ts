@@ -18,12 +18,13 @@ export class CustomeValidation {
       // return Observable.(c=>{ // })
       return postService.checkEmail(control.value).pipe(
         map((c) => {
-            alert(c);
+          alert(c);
           if (c == true) {
             return { unique: true };
           }
           return null;
-        }) );
+        })
+      );
     };
   }
 }

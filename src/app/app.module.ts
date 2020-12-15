@@ -13,6 +13,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommentsComponent } from './comments/comments.component';
 import { GlobalInterceptor } from './Shared/globalIntersiptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SchoolComponent } from './school/school.component';
+import {TableModule} from 'primeng/table';
+import { CookieService } from 'ng2-cookies/cookie';
 // import { CreateStudentComponent } from './create-student/create-student.component';
 
 // import { Routes, RouterModule } from '@angular/router';
@@ -27,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PostsComponent,
     MenueComponent,
     CommentsComponent,
+    SchoolComponent,
     // CreateStudentComponent
   ],
   imports: [
@@ -34,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule
     // RouterModule.forRoot(routes),
   ],
   providers: [
@@ -43,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     //   useClass: GlobalInterceptor,
     //   multi: true
     // }
+    CookieService
   ],
   bootstrap: [AppComponent],
 })

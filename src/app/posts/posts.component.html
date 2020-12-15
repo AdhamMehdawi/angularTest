@@ -13,6 +13,17 @@
             searchValue
         }}
       </div>
+
+      <div>
+        <label>Category</label>
+        <select
+          name="sendTo"
+          formControlName="sendTo"
+          class="fonr-control"
+        >
+          <option   *ngFor="let item of categories" [value]="item.id">{{ item.title }}</option>
+        </select>
+      </div>  
     
     <table class="table table-striped">
         <thead>
@@ -48,6 +59,7 @@
                  <td>
                     <!-- <button (click)="onDelete($event, post)"  >   Delete </button>-->
                     <button (click)="display(post)" > Comments  </button> 
+                    <button (click)="shared(post)" > Share </button>
                 </td>
             </tr>
         </tbody>

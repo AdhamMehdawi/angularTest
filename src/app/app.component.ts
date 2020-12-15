@@ -8,6 +8,8 @@ import {
 import postsData from '../../src/assets/posts.json';
 import appSetting from '../../src/assets/appSettings.json';
 import { Router } from '@angular/router';
+import { SharedDataService } from './shared-data.service';
+import { CookieService } from 'ng2-cookies';
 
 @Component({
   selector: 'app-root',
@@ -29,18 +31,30 @@ export class AppComponent
     postsData: this.posts,
   };
   testVar = appSetting;
-
-  constructor(private router: Router) {
+  displayPostInfo;
+  displayPostInfo2;
+  serviceSubscribe;
+  constructor(private router: Router,  private cookie:CookieService , private sharedData: SharedDataService) {
     // this.testType = new Student();
     console.log(this.sum());
+ 
+   cookie.set("test","ali",190);
+   //alert(cookie.get("test"));
+
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.serviceSubscribe.unsubscribe();
+  }
   ngOnChanges() {}
   ngOnInit() {
     // for (let i = 0; i < 10; i++) {
     //   this.students.push(i);
     // }
+    this.displayPostInfo2 = this.sharedData.datToShare;
+    this.serviceSubscribe = this.sharedData.datToShare.subscribe((c) => {
+      this.displayPostInfo = c;
+    });
   }
   ngAfterViewInit() {}
 
@@ -50,7 +64,6 @@ export class AppComponent
 
   delete(item) {
     console.log(item);
-
     let index = this.posts.indexOf(item);
     if (index !== -1) {
       this.posts.splice(index, 1);

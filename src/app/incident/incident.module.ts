@@ -11,8 +11,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [CreateInncidentComponent],
-  imports: [CommonModule,
-    ReactiveFormsModule,
-     RouterModule.forChild(routes)],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule.forChild(routes)],
 })
 export class IncidentModule {}

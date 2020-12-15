@@ -9,29 +9,24 @@
         formControlName="subject"
         class="fonr-control"
       />
-      <div class="error"   *ngIf=" 
-      subject.invalid &&
-      (subject.touched || subject.dirty)
-    "
-     style="color: red;">
-     <div
-     class="error"
-     *ngIf="
-       subject.errors.required
-     "
-   >
-     The subject feild is required
-   </div>
-   <div *ngIf="subject.errors.minlength">
-     the subject must be at least
-     {{ subject.errors.minlength.requiredLength }}
-     characters long
-   </div>
-   <div *ngIf="subject.errors.noTestallowed">
-     the subject must be any value not equal to test
-   </div>
+      <div
+        class="error"
+        *ngIf="subject.invalid && (subject.touched || subject.dirty)"
+        style="color: red"
+      >
+        <div class="error" *ngIf="subject.errors.required">
+          The subject feild is required
+        </div>
+        <div *ngIf="subject.errors.minlength">
+          the subject must be at least
+          {{ subject.errors.minlength.requiredLength }}
+          characters long
+        </div>
+        <div *ngIf="subject.errors.noTestallowed">
+          the subject must be any value not equal to test
+        </div>
       </div>
-   
+
       {{ subject.errors | json }}
     </div>
 
@@ -43,16 +38,20 @@
         formControlName="description"
         class="fonr-control"
       />
+      <!-- <div *ngIf="validationBase.hasErrors(description)">
+        {{ validationBase.getErrorMessage(description) }}
+      </div> -->
     </div>
 
     <div>
-      <label>SendTo</label>
-      <input
-        type="text"
+      <label>Category</label>
+      <select
         name="sendTo"
         formControlName="sendTo"
         class="fonr-control"
-      />
+      >
+        <option   *ngFor="let item of categories" [value]="item.id">{{ item.title }}</option>
+      </select>
     </div>
 
     <div formArrayName="address">

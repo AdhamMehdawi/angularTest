@@ -3,9 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommentsComponent } from './comments/comments.component';
 // import { CreateStudentComponent } from './create-student/create-student.component';
 import { PostsComponent } from './posts/posts.component';
+import { SchoolComponent } from './school/school.component';
 
 const routes: Routes = [
-  // { path: 'createStudent', component: CreateStudentComponent },
+   { path: 'schoolList', component: SchoolComponent },
   {
     path: 'posts',
     children: [
